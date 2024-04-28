@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import colorlog
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,6 +25,46 @@ SECRET_KEY = 'django-insecure-1(kmfkqv!atl)7pfdf5(3tzx6*&!dwi)h-u0%s=9(nx*e0f!f_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+LOG_COLORS = {
+    'DEBUG': 'cyan',
+    'INFO': 'green',
+    'WARNING': 'yellow',
+    'ERROR': 'red',
+    'CRITICAL': 'bold_red',
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'colored': {
+            '()': colorlog.ColoredFormatter,
+            'format': '%(log_color)s%(levelname)-8s%(asctime)s%(reset)s %(log_color)s%(message)s',
+            'log_colors': LOG_COLORS,
+            'style': "%",
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'colored',
+        }
+    },
+    'loggers': {
+        'authentication': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'movies': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
 
 ALLOWED_HOSTS = []
 
