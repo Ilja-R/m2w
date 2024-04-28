@@ -4,9 +4,6 @@ from django.shortcuts import render, redirect
 
 
 from authentication.forms import EmailUserCreationForm
-from common.logger import Logger
-
-logger = Logger(__name__)
 
 
 def login_page(request):
@@ -22,7 +19,6 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            logger.info(f"User with email {user.username} logged in successfully.")
             return redirect('index')
         else:
             messages.error(request, 'Invalid login credentials')
@@ -32,7 +28,8 @@ def login_page(request):
 
 
 def logout_user(request):
-    logout(request)
+    if request.user.is_authenticated:
+        logout(request)
     return redirect('index')
 
 
@@ -46,21 +43,7 @@ def register_user(request):
             user.username = user.email.lower()
             user.save()
             login(request, user)
-            logger.info(f"User with email {user.username} registered successfully.")
             return redirect('index')
         else:
             messages.error(request, form.errors)
     return render(request, 'authentication/register.html', {'page': page, 'form': form})
-
-# def register_view(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             # Log the user in after registration
-#             login(request, user)
-#             # Redirect to a success page or home page
-#             return redirect('success_page')  # Replace 'success_page' with the name of your success page URL pattern
-#     else:
-#         form = UserCreationForm()
-#     return render(request, 'register.html', {'form': form})
