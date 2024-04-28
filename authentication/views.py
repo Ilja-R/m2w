@@ -9,7 +9,7 @@ from authentication.forms import EmailUserCreationForm
 def login_page(request):
     page = 'login'
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('my-profile')
 
     if request.method == 'POST':
         email = request.POST.get('email').lower()
@@ -19,7 +19,7 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('my-profile')
         else:
             messages.error(request, 'Invalid login credentials')
 
@@ -30,7 +30,7 @@ def login_page(request):
 def logout_user(request):
     if request.user.is_authenticated:
         logout(request)
-    return redirect('index')
+    return redirect('login')
 
 
 def register_user(request):
