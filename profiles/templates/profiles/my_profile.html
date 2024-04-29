@@ -5,11 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-{% if user %}
-Hello {{ user.email }}!<br>
-    <p><img src = {{ profile.avatar.url }}></p>
-Friends {{ profile.friends.count }}
+
+{% if confirm %}
+    <h1>Update Success</h1>
 {% endif %}
-Simple index page.
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+</form>
 </body>
 </html>
