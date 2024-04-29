@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class MoviesConfig(AppConfig):
+class ProfilesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'movies'
+    name = 'profiles'
 
     def ready(self):
-        import movies.signals
+        import profiles.signals
