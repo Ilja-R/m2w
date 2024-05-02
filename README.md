@@ -6,15 +6,24 @@ M2W means __Movies to Watch__
 Current project will be done as final project of SDA "PythonRemote course".
 <br> The main idea of application is to help people to remember all movies
 <br> they ever heard, seen a trailer or were advised by other people to definitely watch.
-If movie was good, user <br> can advise it to friends.
+<br> If movie was good, user can advise it to friends.
 
 ### Technologies used in project
 
+#### Programming:
 * Python
 * Django
+* html, css, javascript
+#### Database:
+* SQL
+* SQLite (for development)
+* PostgreSQL (for production)
+#### Tools:
+* Git
+* PyCharm
 
 
-#### Main functionalities planned to be realised
+### Main functionalities planned to be realised
 
 * Registering as new user
 * Realisation of sign in/out functionality
