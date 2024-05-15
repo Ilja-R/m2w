@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="My_cinema.css">
+    <title>Home</title>
+</head>
+<body>
+
+
+                    <table class="main-table">
+                                <tr>
+                                    <th width="230" class="table_label"> <h1>My cinema</h1></th>
+                                    <th class="custom-select-cell">
+
+                                        <div class="custom-select">
+                                            <select name="Filter">
+                                                <option value="value1" selected="selected">Filter</option>
+                                                <option value="value2">Movies to watch</option>
+                                                <option value="value3">Watched movies</option>
+                                            </select>
+                                        </div>
+                                        <div class="dropdown-content"></div>
+
+                                    </th>
+                                    <th>
+                                        <form action="/search" method="GET">
+                                        <!---<label for="search">Search</label>--->
+                                        <input type="search" id="search" name="q" placeholder="Search movie">
+
+                                    </th>
+                                    <th>
+                                         <button type="submit" id="find" button id="search-button">Find</button>
+                                    </th>
+                    </table>
+
+                    <table class="secondary-table">
+                                <tr class="row-style">
+                                    <td width="80" height="120"><img src="get_image.php?id=1" alt="Image from Database"></td>
+                                    <td><h3>Name (year):</h3></td>
+                                    <td><h5>Description</h5></td>
+                                    <td width="150"><button type="submit" class="add">Add to My cinema</button></td>
+                                </tr>
+                                <tr class="row-style">
+                                    <td><img src="get_image.php?id=2" alt="Image from Database"></td>
+                                    <td><h3>Name (year):</h3></td>
+                                    <td><h5>Description</h5></td>
+                                    <td width="150"><button type="submit" class="add">Add to My cinema</button></td>
+                                </tr>
+
+                    </table>
+
+
+</body>
+</html>
