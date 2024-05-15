@@ -1,0 +1,27 @@
+
+body {
+    background-color: #e7e2e1;
+    font-family: Avenir, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    background-color: #141313;
+    border-color: #141313;
+    border-radius: 0;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    width: 200px;
+    height: 45px;
+    border-width: 1px;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
