@@ -1,0 +1,41 @@
+
+body {
+    background-color: #e7e2e1;
+    font-family: Avenir, sans-serif;
+}
+
+button {
+    background-color: #141313;
+    border-color: #141313;
+    border-radius: 0;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border-width: 1px;
+
+
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    margin-right: 5px;
+    margin-left: auto;
+
+}
+
+
+label {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: -3px;
+    display: block;
+}
+
+.questions {
+    text-decoration: none;
+
+    color: #141313;
+
+}
