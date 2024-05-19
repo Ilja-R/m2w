@@ -1,0 +1,30 @@
+body {
+    background-color: #e7e2e1;
+    font-family: Avenir, sans-serif;
+}
+
+.container {
+    text-align: center;
+
+}
+
+.welcome_table {
+    width: 60%;
+    border-collapse: separate;
+    border-spacing: 20px;
+    margin: auto;
+
+}
+
+.welcome_table td {
+    background-color: white;
+}
+
+
+
+.questions {
+    text-decoration: none;
+    color: #141313;
+
+}
+
