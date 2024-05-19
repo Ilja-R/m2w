@@ -15,9 +15,10 @@
 
                                         <div class="custom-select">
                                             <select name="Filter">
-                                                <option value="value1" selected="selected">Filter</option>
-                                                <option value="value2">Movies to watch</option>
-                                                <option value="value3">Watched movies</option>
+
+                                                <option value="value1">Added Movies</option>
+                                                <option value="value2">Watched movies</option>
+                                                <option value="value3"selected="selected">All movies</option>
                                             </select>
                                         </div>
                                         <div class="dropdown-content"></div>
@@ -45,10 +46,37 @@
                                     <td><img src="get_image.php?id=2" alt="Image from Database"></td>
                                     <td><h3>Name (year):</h3></td>
                                     <td><h5>Description</h5></td>
-                                    <td width="150"><button type="submit" class="add">Add to My cinema</button></td>
+                                    <td width="150"><button type="submit" class="add">Mark as watched</button></td>
+                                </tr>
+                                <tr class="row-style">
+                                    <td><img src="get_image.php?id=2" alt="Image from Database"></td>
+                                    <td><h3>Name (year):</h3></td>
+                                    <td><h5>Description</h5></td>
+                                    <td width="150"><button type="submit" class="add">Advice to friend</button></td>
                                 </tr>
 
                     </table>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var select = document.querySelector("select[name='Filter']");
+        var secondaryTableRows = document.querySelectorAll(".secondary-table .row-style");
+
+        select.addEventListener("change", function() {
+            var selectedOption = select.value;
+
+            secondaryTableRows.forEach(function(row) {
+                var button = row.querySelector(".add");
+                if (selectedOption === "value1") {
+                    row.style.display = button.textContent === "Mark as watched" ? "table-row" : "none";
+                } else if (selectedOption === "value2") {
+                    row.style.display = button.textContent === "Advice to friend" ? "table-row" : "none";
+                } else {
+                    row.style.display = "table-row";
+                }
+            });
+        });
+    });
+</script>
 
 
 </body>
