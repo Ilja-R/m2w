@@ -3,9 +3,9 @@
 {% if user.is_authenticated %}
     <div class="icon-container">
 
-        <a href="#" id="profile_icon"><img src="{% static 'images/profileLG.png' %}" class="icons" alt="Profile"><span class="icon-text">Profile</span></a>
+        <a href="/myprofile/" id="profile_icon"><img src="{% static 'images/profileLG.png' %}" class="icons" alt="Profile"><span class="icon-text">Profile</span></a>
         <a href="#" id="movies_icon"><img src="{% static 'images/moviesLG.png' %}" class="icons" alt="Movies"><span class="icon-text">Movies</span></a>
-        <a href="#" id="friends_icon"><img src="{% static 'images/friendsLG.png' %}"  class="icons" alt="Friends"><span class="icon-text">Friends</span></a>
+        <a href="/friends/" id="friends_icon"><img src="{% static 'images/friendsLG.png' %}"  class="icons" alt="Friends"><span class="icon-text">Friends</span></a>
     </div>
 
     <div class="logo-container">
@@ -16,7 +16,7 @@
     </div>
 {% else %}
     <div class="buttons_container">
-        <a href="#" id="sign_in_button"><button type="submit" class="button">Sign in</button></a>
+        <a href="/login/" id="sign_in_button"><button type="submit" class="button">Sign in</button></a>
         <a href="/register/" id="register_button"><button type="submit" class="button">Register</button></a>
     </div>
     <div class="logo-container">
