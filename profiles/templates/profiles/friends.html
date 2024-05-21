@@ -55,6 +55,7 @@
 <h2>My friends</h2>
     <table>
         <tr>
+            <th>Avatar</th>
             <th>Email</th>
             <th>First name</th>
             <th>Last name</th>
@@ -62,6 +63,7 @@
         
         {% for friend in friends %}
             <tr>
+                <td><img src="{{ friend.profile.avatar.url }}" width="50" height="50"></td>
                 <td>{{ friend.email }}</td>
                 <td>{{ friend.first_name|default:"-" }}</td>
                 <td>{{ friend.last_name|default:"-" }}</td>

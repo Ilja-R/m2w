@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 from profiles.forms import ProfileForm, FriendSearchForm
@@ -80,6 +81,12 @@ def delete_friend(request, pk):
     user = Profile.objects.get(user=request.user)
     user.friends.remove(friend.user)
     friend.friends.remove(user.user)
+    relationship = Relationship.objects.filter(
+        Q(sender=user, receiver=friend) | Q(sender=friend, receiver=user)
+    ).first()
+
+    if relationship:
+        relationship.delete()
     user.save()
     friend.save()
     return redirect('friends')
