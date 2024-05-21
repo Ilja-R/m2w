@@ -8,9 +8,16 @@
 {% if confirm %}
     <h1>Update Success</h1>
 {% endif %}
-<form action="" method="POST" enctype="multipart/form-data" class="my_form">
+<form method="post" enctype="multipart/form-data" class="my_form">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Update</button>
+    <div id="avatar-preview">
+        {% if form.instance.avatar %}
+            <img src="{{ form.instance.avatar.url }}" width="50" height="50" id="current-avatar" />
+        {% endif %}
+    </div>
+    <button type="submit">Save</button>
+</form>
+
 </form>
 {% endblock %}
