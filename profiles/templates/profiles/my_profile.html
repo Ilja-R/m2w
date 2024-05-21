@@ -2,22 +2,43 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+{% endblock %}
 
 {% block content %}
-    
-{% if confirm %}
-    <h1>Update Success</h1>
-{% endif %}
-<form method="post" enctype="multipart/form-data" class="my_form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div id="avatar-preview">
-        {% if form.instance.avatar %}
-            <img src="{{ form.instance.avatar.url }}" width="50" height="50" id="current-avatar" />
-        {% endif %}
-    </div>
-    <button type="submit">Save</button>
-</form>
+<div class="center-wrapper">
+    {% if confirm %}
+        <h1>Update Success</h1>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data" class="my_form" id="profile_my_form">
+        {% csrf_token %}
+        <div class="center-wrapper">
+                <div>
+                    <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+                    {{ form.first_name }}
+                    {{ form.first_name.errors }}
+                </div>
+                <div>
+                    <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+                    {{ form.last_name }}
+                    {{ form.last_name.errors }}
+                </div>
+                <div>
+                    <label for="{{ form.avatar.id_for_label }}" id="avatar-label">Avatar:</label>
+                    {{ form.avatar }}
+                    {{ form.avatar.errors }}
 
-</form>
+                </div>
+                <div id="avatar-preview">
+                    {% if form.instance.avatar %}
+                        <img src="{{ form.instance.avatar.url }}" width="50" height="50" id="current-avatar" />
+                    {% endif %}
+                </div>
+
+                <button type="submit">Save</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
+
