@@ -43,7 +43,7 @@ def register_user(request):
             user.username = user.email.lower()
             user.save()
             login(request, user)
-            return redirect('index')
+            return redirect('my-profile')
         else:
             messages.error(request, form.errors)
     return render(request, 'authentication/register.html', {'page': page, 'form': form})

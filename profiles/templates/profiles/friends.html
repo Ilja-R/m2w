@@ -1,8 +1,87 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for friend in friends %}
-    <p>{{ friend.email }}</p>
-    <hr>
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
+<form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Add friend</button>
+</form>
+{% for outgoing_request in outgoing_requests %}
+    <h2>Outgoing requests</h2>
+    <table>
+        <tr>
+            <th>Receiver</th>
+            <th>Status</th>
+            
+        </tr>
+        <tr>
+            <td>{{ outgoing_request.receiver.email }}</td>
+            <td>{{ outgoing_request.status }}</td>
+            <td>
+                <button>
+                    <a href="{% url 'delete-request' outgoing_request.id %}">Delete</a>
+                </button>
+            </td>
+            
+        </tr>
+    </table>
 {% endfor %}
+{% for incoming_request in incoming_requests %}
+    <h2>Incoming requests</h2>
+    <table>
+        <tr>
+            <th>Sender</th>
+            <th>Status</th>
+            
+        </tr>
+        <tr>
+            <td>{{ incoming_request.sender.email }}</td>
+            <td>{{ incoming_request.status }}</td>
+            <td>
+                <button>
+                    <a href="{% url 'accept-request' incoming_request.id %}">Accept</a>
+                </button>
+                <button>
+                    <a href="{% url 'delete-request' incoming_request.id %}">Delete</a>
+                </button>
+            </td>
+            
+        </tr>
+    </table>
+{% endfor %}
+<h2>My friends</h2>
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>First name</th>
+            <th>Last name</th>
+        </tr>
+        
+        {% for friend in friends %}
+            <tr>
+                <td>{{ friend.email }}</td>
+                <td>{{ friend.first_name|default:"-" }}</td>
+                <td>{{ friend.last_name|default:"-" }}</td>
+                <td>
+                    <button onclick="confirmDeletion(event, '{{ friend.id }}', '{{ friend.email }}')">
+                        <a href="{% url 'delete-friend' friend.id %}">Delete</a>
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function confirmDeletion(event, friendId, friendEmail) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to delete this friend " + friendEmail + "?")) {
+        window.location.href = "{% url 'delete-friend' 0 %}".replace("0", friendId);
+    }
+}
+</script>
 {% endblock %}
