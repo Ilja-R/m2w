@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+{% endblock %}
 {% block content %}
-<table>
+<table class="inline-form">
         <thead>
             <tr>
                 <th>Poster</th>
@@ -13,13 +16,13 @@
         <tbody>
             {% for movie in all_movies %}
             <tr>
-                <td><img src="{{ movie.poster.url }}" width="100" height="100"></td>
-                <td><a href="{{ movie.id }}">{{ movie.title }}</a></td>
+                <td style="width: 10%;"><img src="{{ movie.poster.url }}" width="100" height="100"></td>
+                <td><a href="{{ movie.id }}" style="font-weight: bold">{{ movie.title }}</a></td>
                 <td>{{ movie.year }}</td>
                 <td>
                     {% if movie.id not in added_movies_id %}
                         <a  href="{% url 'add-movie' movie.id %}">
-                            <button type="submit">Add movie</button>
+                            <button type="submit" id="find">Add movie</button>
                         </a>
                     {% endif %}
                 </td>

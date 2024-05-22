@@ -1,17 +1,30 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+{% endblock %}
 {% block content %}
+
 {% if error %}
     <p>{{ error }}</p>
 {% endif %}
-<form method="post">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <button type="submit">Add friend</button>
-</form>
+<table class="inline-form">
+    <tr>
+        <form method="post">
+            <td style="width: 20%;">{{ form.email.label_tag }}</td>
+            <td style="width: 50%;">{{ form.email }} </td>
+            {% csrf_token %}
+            <td><button type="submit" id="find">Add friend</button></td>
+        </form>
+    </tr>
+
+</table>
+<hr></hr>
+<hr></hr>
+<hr></hr>
 {% for outgoing_request in outgoing_requests %}
     <h2>Outgoing requests</h2>
-    <table>
+    <table class="inline-form" id="request_table">
         <tr>
             <th>Receiver</th>
             <th>Status</th>
@@ -21,8 +34,8 @@
             <td>{{ outgoing_request.receiver.email }}</td>
             <td>{{ outgoing_request.status }}</td>
             <td>
-                <button>
-                    <a href="{% url 'delete-request' outgoing_request.id %}">Delete</a>
+                <button >
+                    <a href="{% url 'delete-request' outgoing_request.id %}" id="find">Delete</a>
                 </button>
             </td>
             
@@ -31,7 +44,7 @@
 {% endfor %}
 {% for incoming_request in incoming_requests %}
     <h2>Incoming requests</h2>
-    <table>
+    <table class="inline-form" id="request_table">
         <tr>
             <th>Sender</th>
             <th>Status</th>
@@ -42,23 +55,26 @@
             <td>{{ incoming_request.status }}</td>
             <td>
                 <button>
-                    <a href="{% url 'accept-request' incoming_request.id %}">Accept</a>
+                    <a href="{% url 'accept-request' incoming_request.id %}" id="find">Accept</a>
                 </button>
                 <button>
-                    <a href="{% url 'delete-request' incoming_request.id %}">Delete</a>
+                    <a href="{% url 'delete-request' incoming_request.id %}" id="find">Delete</a>
                 </button>
             </td>
             
         </tr>
     </table>
 {% endfor %}
+<hr></hr>
+<hr></hr>
+<hr></hr>
 <h2>My friends</h2>
-    <table>
+    <table class="inline-form">
         <tr>
-            <th>Avatar</th>
-            <th>Email</th>
-            <th>First name</th>
-            <th>Last name</th>
+            <th style="width: 10%;">Avatar</th>
+            <th style="width: 20%;">Email</th>
+            <th style="width: 10%;">First name</th>
+            <th style="width: 30%;">Last name</th>
         </tr>
         
         {% for friend in friends %}
@@ -69,7 +85,7 @@
                 <td>{{ friend.last_name|default:"-" }}</td>
                 <td>
                     <button onclick="confirmDeletion(event, '{{ friend.id }}', '{{ friend.email }}')">
-                        <a href="{% url 'delete-friend' friend.id %}">Delete</a>
+                        <a href="{% url 'delete-friend' friend.id %}" id="find">Delete</a>
                     </button>
                 </td>
             </tr>

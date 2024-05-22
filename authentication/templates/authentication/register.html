@@ -8,6 +8,7 @@
 
 {% block content %}
 <body>
+
         <h1>Register</h1>
         <div class="register_table">
         {% if messages %}
@@ -21,18 +22,21 @@
             <p>{{ error }}</p>
         {% endif %}
             <form method="post">
-                {% csrf_token %}
-                <label for="email">Your email:</label><br>
-                <input type="email" id="email" name="email" required><br>
-                <label for="password1">Create password:</label><br>
-                <input type="password" id="password1" name="password1" required><br>
-                <label for="password2">Confirm Password:</label><br>
-                <input type="password" id="password2" name="password2" required><br>
-                <div>
-                    <button type="submit" id="register">Register</button>
-                    <a href="#" class="questions">Already registered?</a>
-                </div>
+
+                    {% csrf_token %}
+                    <label for="email">Your email:</label><br>
+                    <input type="email" id="email" name="email" required><br>
+                    <label for="password1">Create password:</label><br>
+                    <input type="password" id="password1" name="password1" required><br>
+                    <label for="password2">Confirm Password:</label><br>
+                    <input type="password" id="password2" name="password2" required><br>
+                    <div>
+                        <button type="submit" id="register">Register</button>
+                        <a href="#" class="questions">Already registered?</a>
+                    </div>
+
             </form>
         </div>
+
 </body>
 {% endblock %}
