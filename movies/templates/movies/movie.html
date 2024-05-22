@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+    <div class="movie-container">
+        <img src="{{ movie.poster.url }}" alt="Movie Poster" class="movie-poster">
+        <div class="movie-details">
+            <h2>{{ movie.title }}</h2>
+            <p><strong>Year:</strong> {{ movie.year }}</p>
+            <p><strong>Genres:</strong> {% for genre in movie.genres.all %}
+                {{ genre.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %} </p>
+            <p><strong>Director:</strong> {{ movie.director }} </p>
+            <p><strong>Plot:</strong> {{ movie.plot }} </p>
+        </div>
+        <div>
+            {% if not is_added %}
+                <a href="{% url 'add-movie' movie.id %}"><button>Add movie</button></a>
+            
+            {% endif %}
+            <a href="/all_movies"><button>Back</button></a>
+        </div>
+    </div>
+</body>
+{% endblock %}

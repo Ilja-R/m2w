@@ -69,13 +69,14 @@ def delete_request(request, pk):
     return redirect('friends')
 
 
+@login_required(login_url='login')
 def accept_request(request, pk):
     request = Relationship.objects.get(id=pk)
     request.status = 'accepted'
     request.save()
     return redirect('friends')
 
-
+@login_required(login_url='login')
 def delete_friend(request, pk):
     friend = Profile.objects.get(id=pk)
     user = Profile.objects.get(user=request.user)

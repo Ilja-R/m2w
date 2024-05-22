@@ -2,6 +2,7 @@
 
 {% block content %}
 <body>
+<a href="/all_movies">All movies</a>
 {% for movie_to_watch in movies %}
     <p>{{ movie_to_watch.movie.title }}</p>
     <hr>
