@@ -4,7 +4,7 @@ body {
     font-family: Avenir, sans-serif;
 }
 
-button {
+button, .my_form button {
     background-color: #141313;
     border-color: #141313;
     border-radius: 0;
@@ -14,6 +14,7 @@ button {
     color: white;
     border-width: 1px;
     margin-right: 10px;
+    width: 150px;
 }
 
 .logo {
@@ -25,7 +26,7 @@ button {
 }
 
 
-label {
+label, .my_form label {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: -3px;
@@ -40,11 +41,105 @@ label {
 }
 
 .my_form {
-    margin: 0 auto; /* Center the form on the page */
-    align-items: center; /* Center items horizontally within the form */
-    width: 300px; /* Set a fixed width for the form */
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better appearance */
+    background-color: #918989;
+    width: 400px;
+    height: 300px;
+    border: 1px solid ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-width: 1px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: flex;
+
 }
+
+.buttons_container {
+    margin-left: auto;
+    align-items: center;
+    display: flex;
+    gap: 20px;
+}
+
+
+input, .my_form input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 90%;
+    margin-top: -5px;
+
+}
+
+.center-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    flex-direction: column;
+
+}
+
+#profile_my_form {
+    width: 400px;
+    height: 500px;
+
+}
+
+#profile_my_form input {
+    width: 300px;
+}
+
+.form-control {
+
+    width: 90%;
+}
+
+.my_form div {
+    margin-bottom: 20px;
+}
+
+.my_form label {
+    margin-bottom: 10px;
+}
+
+#avatar-label {
+    margin-left: 30px;
+}
+
+#profile_my_form input[type="file"] {
+    border: 0px solid ;
+
+}
+
+#profile_my_form input[type="file"]::-webkit-file-upload-button {
+    background-color: #141313;
+    border-color: #141313;
+    border-radius: 0;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    width: 60%;
+    height: auto;
+    border-width: 1px;
+
+}
+
+
+#profile_my_form input[type="file"]::-moz-file-upload-button {
+ background-color: #141313;
+    border-color: #141313;
+    border-radius: 0;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    width: 60%;
+    height: auto;
+    border-width: 1px;
+
+}
+
