@@ -1,17 +1,32 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+{% endblock %}
+
 {% block content %}
 <body>
-    <a href="/all_movies"><h2>All movies</h2></a>
-    <a href="/my_advices/"><h2>Advices</h2></a>
+    <table>
+        <tr>
+            <td><a href="/all_movies" class="button-group"><h2>All movies</h2></a></td>
+
+            <td><a href="/my_advices/" class="button-group"><h2>Advices</h2></a></td>
+        </tr>
+    </table>
+    <hr>
+    <hr>
+    <hr>
     <h2>Movies to watch</h2>
     <table class="inline-form">
         <thead>
         <tr>
-            <th>Poster</th>
-            <th>Title</th>
-            <th>Release Date</th>
-            <th>Action</th>
+            <th style="width: 5%;">Poster</th>
+            <th style="width: 15%;">Title</th>
+            <th style="width: 10%;">Release Date</th>
+            <th style="width: 7%;"> </th>
+            <th style="width: %;">Action</th>
+            <th> </th>
         </tr>
         </thead>
         <tbody>
@@ -21,11 +36,11 @@
                 <td style="width: 10%;"><img src="{{ movie_to_watch.movie.poster.url }}" width="100" height="100"></td>
                 <td><a href="{% url 'movie-info' movie_to_watch.movie.id %}" style="font-weight: bold">{{ movie_to_watch.movie.title }}</a></td>
                 <td>{{ movie_to_watch.movie.year }}</td>
+                <td></td>
                 <td>
-                    <a href="{% url 'rate-movie' movie_to_watch.movie.id %}">
+                    <a href="{% url 'rate-movie' movie_to_watch.movie.id %}" id="watched">
                         <button>Mark watched and rate</button>
                     </a>
-                    
                     <a href="{% url 'delete-movie' movie_to_watch.movie.id %}" id="delete">
                         <button onclick="confirmDeletion(event, '{{ movie_to_watch.movie.id }}', '{{ movie_to_watch.movie.title }}')">Delete</button>
                     </a>
@@ -40,10 +55,10 @@
     <table class="inline-form">
         <thead>
         <tr>
-            <th>Poster</th>
-            <th>Title</th>
-            <th>Release Date</th>
-            <th>My Rating</th>
+            <th style="width: 5%;">Poster</th>
+            <th style="width: 15%;">Title</th>
+            <th style="width: 10%;">Release Date</th>
+            <th style="width: 7%;">My Rating</th>
             <th>Action</th>
         </tr>
         </thead>

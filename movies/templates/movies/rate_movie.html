@@ -1,12 +1,25 @@
 {% extends "base.html" %}
 
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+{% endblock %}
+
 {% block content %}
     <form method="post">
         {% csrf_token %}
-        <div class="radio-buttons-inline">
-            {{ form.personal_rating }}
-        </div>
-        <button type="submit">Save</button>
-        <button type="button" onclick="window.history.back();">Back</button>
+            <div class="center-wrapper">
+
+                <div class="my_form">
+                    <h2>Rate the movie:</h2>
+                        <div class="radio-buttons-inline">
+                            {{ form.personal_rating }}
+                        </div>
+                        <div class="button-group">
+                            <button type="submit">Save</button>
+                            <button type="button" onclick="window.history.back();">Back</button>
+                        </div>
+                </div>
+            </div>
     </form>
 {% endblock %}

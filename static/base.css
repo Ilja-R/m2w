@@ -216,3 +216,37 @@ table.movie-container td {
     display: flex;
     flex-wrap: wrap;
 }
+
+.radio-buttons-inline {
+    display: flex;
+    gap: 5px;
+    margin-top: 30px;
+}
+
+.my_form h2 {
+    text-align: center;
+    align-items: center;
+
+}
+
+
+
+.button-group {
+    display: flex;
+    gap: 5px;
+    margin-top: 30px;
+    background-color: #918989;
+    color: #141313;
+    border-color: #141313;
+    border-radius: 0;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 200px;
+    height: 45px;
+    border-width: 1px;
+    margin-left: 15px;
+    gap: 5px;
+    display: flex;
+    text-align: center;
+}
