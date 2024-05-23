@@ -16,7 +16,10 @@
             {% if not is_added %}
                 <a href="{% url 'add-movie' movie.id %}"><button>Add movie</button></a>
             {% endif %}
-            <a href="/all_movies"><button>Back</button></a>
+            {% if is_added and not is_watched %}
+                <a href="{% url 'rate-movie' movie.id %}"><button>Mark watched and rate</button></a>
+            {% endif %}
+            <button onclick="window.history.back();">Back</button>
         </td>
     </tr>
 </table>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>My advices</h2>
+    <table>
+        {% for movie_advice in advices %}
+            <tr>
+                <td>{{ movie_advice.sender.email }}</td>
+                <td><a href="{% url 'movie-info' movie_advice.movie.id %}">{{ movie_advice.movie.title }}</a></td>
+                <td>
+                    <form action="{% url 'delete-advice' movie_advice.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

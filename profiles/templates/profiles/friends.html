@@ -81,8 +81,8 @@
             <tr>
                 <td><img src="{{ friend.profile.avatar.url }}" width="50" height="50"></td>
                 <td>{{ friend.email }}</td>
-                <td>{{ friend.first_name|default:"-" }}</td>
-                <td>{{ friend.last_name|default:"-" }}</td>
+                <td>{{ friend.profile.first_name|default:"-" }}</td>
+                <td>{{ friend.profile.last_name|default:"-" }}</td>
                 <td>
                     <button onclick="confirmDeletion(event, '{{ friend.id }}', '{{ friend.email }}')">
                         <a href="{% url 'delete-friend' friend.id %}" id="find">Delete</a>

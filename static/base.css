@@ -212,4 +212,7 @@ table.movie-container td {
 }
 
 
-
+#id_personal_rating {
+    display: flex;
+    flex-wrap: wrap;
+}

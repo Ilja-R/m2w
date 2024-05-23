@@ -2,10 +2,83 @@
 
 {% block content %}
 <body>
-<a href="/all_movies">All movies</a>
-{% for movie_to_watch in movies %}
-    <p>{{ movie_to_watch.movie.title }}</p>
-    <hr>
-{% endfor %}
+    <a href="/all_movies"><h2>All movies</h2></a>
+    <a href="/my_advices/"><h2>Advices</h2></a>
+    <h2>Movies to watch</h2>
+    <table class="inline-form">
+        <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for movie_to_watch in movies %}
+            {% if movie_to_watch.watched is False %}
+            <tr>
+                <td style="width: 10%;"><img src="{{ movie_to_watch.movie.poster.url }}" width="100" height="100"></td>
+                <td><a href="{% url 'movie-info' movie_to_watch.movie.id %}" style="font-weight: bold">{{ movie_to_watch.movie.title }}</a></td>
+                <td>{{ movie_to_watch.movie.year }}</td>
+                <td>
+                    <a href="{% url 'rate-movie' movie_to_watch.movie.id %}">
+                        <button>Mark watched and rate</button>
+                    </a>
+                    
+                    <a href="{% url 'delete-movie' movie_to_watch.movie.id %}" id="delete">
+                        <button onclick="confirmDeletion(event, '{{ movie_to_watch.movie.id }}', '{{ movie_to_watch.movie.title }}')">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Watched movies</h2>
+    <table class="inline-form">
+        <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>My Rating</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for movie_to_watch in movies %}
+            {% if movie_to_watch.watched is True %}
+            <tr>
+                <td style="width: 10%;"><img src="{{ movie_to_watch.movie.poster.url }}" width="100" height="100"></td>
+                <td><a href="{% url 'movie-info' movie_to_watch.movie.id %}" style="font-weight: bold">{{ movie_to_watch.movie.title }}</a></td>
+                <td>{{ movie_to_watch.movie.year }}</td>
+                <td>{{ movie_to_watch.personal_rating }}</td>
+                <td>
+                    <a href="{% url 'advice-to-friends' movie_to_watch.movie.id %}">
+                        <button>Advice to friend</button>
+                    </a>
+                    <a href="{% url 'delete-movie' movie_to_watch.movie.id %}" id="delete">
+                        <button onclick="confirmDeletion(event, '{{ movie_to_watch.movie.id }}', '{{ movie_to_watch.movie.title }}')">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
 </body>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function confirmDeletion(event, movieId, movieName) {
+    event.preventDefault();
+    if (confirm("Are you sure you want to delete this movie " + movieName + "?")) {
+        window.location.href = "{% url 'delete-movie' 0 %}".replace("0", movieId);
+    }
+}
+</script>
 {% endblock %}

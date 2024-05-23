@@ -1,6 +1,8 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
+from profiles.models import Profile
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=100)
@@ -33,3 +35,21 @@ class MovieToWatch(models.Model):
 
     def __str__(self):
         return f'{self.user}-{self.movie}'
+
+
+STATUS_CHOICES = (
+    ('send', 'send'),
+    ('accepted', 'accepted')
+)
+
+
+class MovieAdvice(models.Model):
+    sender = models.ForeignKey('authentication.AppUser', on_delete=models.CASCADE, related_name='advice_sender')
+    receiver = models.ForeignKey('authentication.AppUser', on_delete=models.CASCADE, related_name='advice_receiver')
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='advice_movie_advices')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='send')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.sender.email}-{self.receiver.email}-{self.movie}'

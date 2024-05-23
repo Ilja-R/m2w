@@ -36,7 +36,6 @@ class Command(BaseCommand):
 
         fake = Faker()
         genres = list(Genre.objects.all())  # Ensure you have some genres created in your database
-        print(genres)
 
         for i in range(100):
             # Generate fake movie data

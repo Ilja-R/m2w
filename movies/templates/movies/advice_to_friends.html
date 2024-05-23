@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Advice {{ movie.title }}</h1>
+    <table>
+        <tr>
+            <th>Friend</th>
+            <th>Action</th>
+        </tr>
+        {% for friend in friends %}
+            <tr>
+                <td>{{ friend }}</td>
+                <td>
+                    <a href="{% url 'advice-movie-to-friend' movie.id friend.id %}">
+                        <button>Advice</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

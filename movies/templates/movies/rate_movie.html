@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="radio-buttons-inline">
+            {{ form.personal_rating }}
+        </div>
+        <button type="submit">Save</button>
+        <button type="button" onclick="window.history.back();">Back</button>
+    </form>
+{% endblock %}
